@@ -7,6 +7,9 @@ fn main() {
         let v = 0;
         &v as *const _ as usize
     };
+    // here it makes sense that the pointers are not equal
+    // (different provenance)
+    // but aren't both a and b usize (not pointers?)
     println!("0x{a:x}==0x{b:x} : {}", a == b);
     println!("0x{a:x}==0x{b:x} : {}", a == b);
     let c = {
