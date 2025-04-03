@@ -1,0 +1,123 @@
+// WARNING: This output format is intended for human consumers only
+// and is subject to change without notice. Knock yourself out.
+// HINT: See also -Z dump-mir for MIR at specific points during compilation.
+fn main() -> () {
+    let mut _0: ();
+    let mut _1: usize;
+    let mut _3: *const u16;
+    let mut _4: usize;
+    let mut _6: *const u16;
+    let mut _8: (usize, bool);
+    let _10: ();
+    let mut _11: std::fmt::Arguments<'_>;
+    let _12: &[core::fmt::rt::Argument<'_>; 1];
+    let _13: [core::fmt::rt::Argument<'_>; 1];
+    let mut _14: core::fmt::rt::Argument<'_>;
+    let _15: &u8;
+    let mut _16: bool;
+    scope 1 {
+        debug a => _1;
+        scope 2 {
+            debug b => _4;
+            let _2: u16;
+            let _5: u16;
+            let _7: usize;
+            scope 3 {
+                debug v => _2;
+            }
+            scope 4 {
+                debug v => _5;
+            }
+            scope 5 {
+                debug e => _7;
+                let _9: [u8; 2];
+                scope 6 {
+                    debug arr => _9;
+                    scope 7 (inlined core::fmt::rt::Argument::<'_>::new_display::<u8>) {
+                        let mut _17: for<'a, 'b, 'c> fn(&'a u8, &'b mut std::fmt::Formatter<'c>) -> std::result::Result<(), std::fmt::Error>;
+                        scope 8 (inlined core::fmt::rt::Argument::<'_>::new::<u8>) {
+                            let mut _18: core::fmt::rt::ArgumentType<'_>;
+                            let mut _19: std::ptr::NonNull<()>;
+                            let mut _20: for<'a, 'b> unsafe fn(std::ptr::NonNull<()>, &'a mut std::fmt::Formatter<'b>) -> std::result::Result<(), std::fmt::Error>;
+                            scope 9 (inlined NonNull::<u8>::from_ref) {
+                                let mut _21: *const u8;
+                            }
+                            scope 10 (inlined NonNull::<u8>::cast::<()>) {
+                                let mut _22: *const ();
+                                scope 11 (inlined NonNull::<u8>::as_ptr) {
+                                }
+                            }
+                        }
+                    }
+                    scope 12 (inlined Arguments::<'_>::new_v1::<2, 1>) {
+                        let mut _23: &[&str];
+                        let mut _24: &[core::fmt::rt::Argument<'_>];
+                    }
+                }
+            }
+        }
+    }
+
+    bb0: {
+        _2 = const 0_u16;
+        _3 = &raw const _2;
+        _1 = copy _3 as usize (PointerExposeProvenance);
+        _5 = const 0_u16;
+        _6 = &raw const _5;
+        _4 = copy _6 as usize (PointerExposeProvenance);
+        _8 = SubWithOverflow(copy _1, copy _4);
+        assert(!move (_8.1: bool), "attempt to compute `{} - {}`, which would overflow", copy _1, copy _4) -> [success: bb1, unwind continue];
+    }
+
+    bb1: {
+        _7 = move (_8.0: usize);
+        _9 = [const 1_u8, const 1_u8];
+        _16 = Lt(copy _7, const 2_usize);
+        assert(move _16, "index out of bounds: the length is {} but the index is {}", const 2_usize, copy _7) -> [success: bb2, unwind continue];
+    }
+
+    bb2: {
+        _15 = &_9[_7];
+        _17 = <u8 as std::fmt::Display>::fmt as for<'a, 'b, 'c> fn(&'a u8, &'b mut std::fmt::Formatter<'c>) -> std::result::Result<(), std::fmt::Error> (PointerCoercion(ReifyFnPointer, Implicit));
+        _21 = &raw const (*_15);
+        _22 = copy _21 as *const () (PtrToPtr);
+        _19 = NonNull::<()> { pointer: move _22 };
+        _20 = copy _17 as for<'a, 'b> unsafe fn(std::ptr::NonNull<()>, &'a mut std::fmt::Formatter<'b>) -> std::result::Result<(), std::fmt::Error> (Transmute);
+        _18 = core::fmt::rt::ArgumentType::<'_>::Placeholder { value: move _19, formatter: move _20, _lifetime: const PhantomData::<&()> };
+        _14 = core::fmt::rt::Argument::<'_> { ty: move _18 };
+        _13 = [move _14];
+        _12 = &_13;
+        _23 = const main::promoted[0] as &[&str] (PointerCoercion(Unsize, Implicit));
+        _24 = copy _12 as &[core::fmt::rt::Argument<'_>] (PointerCoercion(Unsize, Implicit));
+        _11 = Arguments::<'_> { pieces: move _23, fmt: const Option::<&[core::fmt::rt::Placeholder]>::None, args: move _24 };
+        _10 = _print(move _11) -> [return: bb3, unwind continue];
+    }
+
+    bb3: {
+        return;
+    }
+}
+
+alloc7 (size: 16, align: 8) {
+    00 00 00 00 00 00 00 00 __ __ __ __ __ __ __ __ │ ........░░░░░░░░
+}
+
+const main::promoted[0]: &[&str; 2] = {
+    let mut _0: &[&str; 2];
+    let mut _1: [&str; 2];
+
+    bb0: {
+        _1 = [const "arr[0]: ", const "\n"];
+        _0 = &_1;
+        return;
+    }
+}
+
+main::{constant#0}: usize = {
+    let mut _0: usize;
+
+    bb0: {
+        _0 = const 2_usize;
+        return;
+    }
+}

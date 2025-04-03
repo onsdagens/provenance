@@ -1,6 +1,11 @@
 [package]
 name = "provenance"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
+
+[profile.release]
+#lto = true          # Enable Link Time Optimization
+#strip = "none"
+#debug = true
 
 [dependencies]
